@@ -26,6 +26,10 @@ function startGame() {
     
         // Show the game board
         document.getElementById('game').style.display = 'flex';
+
+        // Set the initial message
+        message.textContent = currentPlayer.name + '\'s turn';
+        message.style.display = 'block'; // Make the message visible
     });
 }
 
@@ -60,6 +64,7 @@ function makeMove(row, col) {
             defeatSound.play();
         } else {
             currentPlayer = currentPlayer === player1 ? player2 : player1;
+            message.textContent = currentPlayer.name + '\'s turn'; // Display whose turn it is
         }
     }
 }
@@ -110,7 +115,7 @@ function resetBoard() {
     gameOver = false;
     document.getElementById('myButton').style.display = 'none'; // Hide the reset button
     message.textContent = ''; // Clear the message
-    message.style.display = 'none'; // Hide the message window
+    message.textContent = currentPlayer.name + '\'s turn'; // Display the initial message
 }
 
 function showButton() {

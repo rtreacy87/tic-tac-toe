@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="scoreboard">
+            <div id="player1Score">Player 1: 0</div>
+            <div id="player2Score">Player 2: 0</div>
+            <div id="ties">Ties: 0</div>
+        </div>
+        <div id="game" class="game-board">
+            <div class="row">
+                <div class="cell" onclick="makeMove(0, 0)" id="r0c0"></div>
+                <div class="cell" onclick="makeMove(0, 1)" id="r0c1"></div>
+                <div class="cell" onclick="makeMove(0, 2)" id="r0c2"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="makeMove(1, 0)" id="r1c0"></div>
+                <div class="cell" onclick="makeMove(1, 1)" id="r1c1"></div>
+                <div class="cell" onclick="makeMove(1, 2)" id="r1c2"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="makeMove(2, 0)" id="r2c0"></div>
+                <div class="cell" onclick="makeMove(2, 1)" id="r2c1"></div>
+                <div class="cell" onclick="makeMove(2, 2)" id="r2c2"></div>
+            </div>
+        </div>  
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

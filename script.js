@@ -5,6 +5,7 @@ let currentPlayer = '';
 let player1Score = 0;
 let player2Score = 0;
 let ties = 0;
+let gameOver = false;
 
 function startGame() {
     player1 = prompt("Enter Player 1's name:");
@@ -19,6 +20,7 @@ function updateScoreboard() {
 }
 
 function makeMove(row, col) {
+    if (gameOver) return;
     if (board[row][col] === '') {
         const symbol = currentPlayer === player1 ? 'X' : 'O';
         board[row][col] = symbol;
@@ -26,13 +28,15 @@ function makeMove(row, col) {
 
         if (checkWin(symbol)) {
             currentPlayer === player1 ? player1Score++ : player2Score++;
+            message.textContent = currentPlayer.name + ' wins!';
+            message.style.display = 'block'; // Make the message visible
             updateScoreboard();
-            alert(currentPlayer + ' wins!');
+            document.getElementById('message').textContent = currentPlayer + ' wins!';
             document.getElementById('myButton').style.display = 'block'; // Show the reset button
         } else if (checkDraw()) {
             ties++;
             updateScoreboard();
-            alert('It\'s a draw!');
+            document.getElementById('message').textContent = 'It\'s a draw!';
             document.getElementById('myButton').style.display = 'block'; // Show the reset button
         } else {
             currentPlayer = currentPlayer === player1 ? player2 : player1;
@@ -47,6 +51,7 @@ function checkWin(symbol) {
             (board[i][0] === symbol && board[i][1] === symbol && board[i][2] === symbol) ||
             (board[0][i] === symbol && board[1][i] === symbol && board[2][i] === symbol)
         ) {
+            gameOver = true;
             return true;
         }
     }
@@ -55,6 +60,7 @@ function checkWin(symbol) {
         (board[0][0] === symbol && board[1][1] === symbol && board[2][2] === symbol) ||
         (board[0][2] === symbol && board[1][1] === symbol && board[2][0] === symbol)
     ) {
+        gameOver = true;
         return true;
     }
 
@@ -67,6 +73,9 @@ function checkDraw() {
             if (cell === '') return false;
         }
     }
+    gameOver = true;
+    message.textContent = "It's a draw!";
+    message.style.display = 'block'; // Make the message visible
     return true;
 }
 
@@ -78,7 +87,10 @@ function resetBoard() {
             document.getElementById('game').children[row].children[col].textContent = '';
         }
     }
+    gameOver = false;
     document.getElementById('myButton').style.display = 'none'; // Hide the reset button
+    message.textContent = ''; // Clear the message
+    message.style.display = 'none'; // Hide the message window
 }
 
 function showButton() {

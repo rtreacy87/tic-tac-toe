@@ -1,21 +1,37 @@
 let board = [['', '', ''], ['', '', ''], ['', '', '']];
-let player1 = '';
-let player2 = '';
 let currentPlayer = '';
 let player1Score = 0;
 let player2Score = 0;
 let ties = 0;
 let gameOver = false;
+let player1 = {
+    name: ''
+};
+
+let player2 = {
+    name: ''
+};
+
+
 
 function startGame() {
-    player1 = prompt("Enter Player 1's name:");
-    player2 = prompt("Enter Player 2's name:");
-    currentPlayer = player1;
+    document.getElementById('submitNames').addEventListener('click', function() {
+        player1.name = document.getElementById('player1Name').value || 'Player 1';
+        player2.name = document.getElementById('player2Name').value || 'Player 2';
+    
+        updateScoreboard();
+    
+        // Hide the name form
+        document.getElementById('nameForm').style.display = 'none';
+    
+        // Show the game board
+        document.getElementById('game').style.display = 'flex';
+    });
 }
 
 function updateScoreboard() {
-    document.getElementById('player1Score').textContent = player1 + ': ' + player1Score;
-    document.getElementById('player2Score').textContent = player2 + ': ' + player2Score;
+    document.getElementById('player1Score').textContent = player1.name + ': ' + player1Score;
+    document.getElementById('player2Score').textContent = player2.name + ': ' + player2Score;
     document.getElementById('ties').textContent = 'Ties: ' + ties;
 }
 
@@ -31,7 +47,7 @@ function makeMove(row, col) {
             message.textContent = currentPlayer.name + ' wins!';
             message.style.display = 'block'; // Make the message visible
             updateScoreboard();
-            document.getElementById('message').textContent = currentPlayer + ' wins!';
+            document.getElementById('message').textContent = currentPlayer.name + ' wins!';
             document.getElementById('myButton').style.display = 'block'; // Show the reset button
         } else if (checkDraw()) {
             ties++;
@@ -99,4 +115,4 @@ function showButton() {
 
 
 startGame();
-
+currentPlayer = player1;

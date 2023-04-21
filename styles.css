@@ -44,3 +44,16 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+#myButton {
+    display: none;
+}
+

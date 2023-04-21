@@ -22,23 +22,24 @@ function makeMove(row, col) {
     if (board[row][col] === '') {
         const symbol = currentPlayer === player1 ? 'X' : 'O';
         board[row][col] = symbol;
-        document.getElementById(`r${row}c${col}`).textContent = symbol;
+        document.getElementById('game').children[row].children[col].textContent = symbol;
 
         if (checkWin(symbol)) {
             currentPlayer === player1 ? player1Score++ : player2Score++;
             updateScoreboard();
             alert(currentPlayer + ' wins!');
-            resetBoard();
+            document.getElementById('myButton').style.display = 'block'; // Show the reset button
         } else if (checkDraw()) {
             ties++;
             updateScoreboard();
             alert('It\'s a draw!');
-            resetBoard();
+            document.getElementById('myButton').style.display = 'block'; // Show the reset button
         } else {
             currentPlayer = currentPlayer === player1 ? player2 : player1;
         }
     }
 }
+
 
 function checkWin(symbol) {
     for (let i = 0; i < 3; i++) {
@@ -71,13 +72,19 @@ function checkDraw() {
 
 function resetBoard() {
     board = [['', '', ''], ['', '', ''], ['', '', '']];
-    currentPlayer = player1; 
+    currentPlayer = player1;
     for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 3; col++) {
-            document.getElementById(`r${row}c${col}`).textContent = '';
+            document.getElementById('game').children[row].children[col].textContent = '';
         }
     }
+    document.getElementById('myButton').style.display = 'none'; // Hide the reset button
 }
+
+function showButton() {
+    document.getElementById("myButton").style.display = "block";
+}
+
 
 startGame();
 

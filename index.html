@@ -21,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="cell" onclick="makeMove(1, 0)" id="r1c0"></div>
-                <div class="cell" onclick="makeMove(1, 1)" id="r1c1"></div>
+                <div class="cell" onclick="makeMove(1, 1); showButton()" id="r1c1"></div>
                 <div class="cell" onclick="makeMove(1, 2)" id="r1c2"></div>
             </div>
             <div class="row">
@@ -30,6 +30,9 @@
                 <div class="cell" onclick="makeMove(2, 2)" id="r2c2"></div>
             </div>
         </div>  
+    </div>
+    <div class="button-container">
+        <button id="myButton" onclick="resetBoard()">Reset Board</button>
     </div>
     <script src="script.js"></script>
 </body>

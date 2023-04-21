@@ -49,11 +49,15 @@ function makeMove(row, col) {
             updateScoreboard();
             document.getElementById('message').textContent = currentPlayer.name + ' wins!';
             document.getElementById('myButton').style.display = 'block'; // Show the reset button
+            let victorySound = document.getElementById('victorySound');
+            victorySound.play();
         } else if (checkDraw()) {
             ties++;
             updateScoreboard();
             document.getElementById('message').textContent = 'It\'s a draw!';
             document.getElementById('myButton').style.display = 'block'; // Show the reset button
+            let defeatSound = document.getElementById('defeatSound');
+            defeatSound.play();
         } else {
             currentPlayer = currentPlayer === player1 ? player2 : player1;
         }
